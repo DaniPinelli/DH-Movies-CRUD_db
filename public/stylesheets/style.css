@@ -14,6 +14,10 @@ header {
   padding: 10px;
 }
 
+footer {
+  background-color: azure;
+}
+
 nav ul{
   display: flex;
   list-style-type: none;

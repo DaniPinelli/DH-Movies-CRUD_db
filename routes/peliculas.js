@@ -6,7 +6,11 @@ const peliculasController = require('../controllers/peliculasController');
 
 router.get('/crear', peliculasController.crear);
 
-router.post('/crear', peliculasController.crear);
+router.post('/crear', peliculasController.guardado);
+
+//Lectura
+
+router.get('/', peliculasController.listado);
 
 
 module.exports = router;

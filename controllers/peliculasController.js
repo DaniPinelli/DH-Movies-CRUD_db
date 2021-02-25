@@ -20,6 +20,13 @@ let peliculasController = {
         });
 
         res.redirect('/peliculas');
+    },
+
+    listado: function(req, res) {
+        db.Pelicula.findAll()
+        .then(function(peliculas) {
+            res.render('listadoPeliculas', {peliculas: peliculas})
+        });
     }
 }
 
