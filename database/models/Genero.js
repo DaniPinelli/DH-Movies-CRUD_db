@@ -1,12 +1,16 @@
-module.exports = (sequelize, DataTypes) => {
-    let alias ="Genero";
+module.exports = function (sequelize, dataTypes) {
+    let alias = "Genero";
+
+    //Definir columnas
 
     let cols = {
         id: {
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         name: {
-            type: DataTypes.STRING
+            type: dataTypes.STRING
         }
     }
 
@@ -17,12 +21,15 @@ module.exports = (sequelize, DataTypes) => {
 
     let Genero = sequelize.define(alias, cols, config);
 
-    Genero.associate = (models) => {
-        Genero,hasMany(models.Pelicula, {
+    //Definir asociaciones
+
+    Genero.associate = function (models) {
+        Genero.hasMany(models.Pelicula, {
             as: "peliculas",
-            foreingKey: "genre_id"
+            foreignKey: "genre_id"
         });
+
     }
 
     return Genero;
-} 
+}

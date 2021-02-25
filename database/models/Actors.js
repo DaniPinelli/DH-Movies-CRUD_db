@@ -1,17 +1,20 @@
-module.exports = (sequelize, DataTypes) => {
-    let alias ="Actor";
+module.exports = function (sequelize, dataTypes) {
+    let alias = "Actor";
+
+    //Definir columnas
 
     let cols = {
         id: {
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         first_name: {
-            type: DataTypes.STRING
+            type: dataTypes.STRING
         },
         last_name: {
-            type: DataTypes.STRING
-        },
-        
+            type: dataTypes.STRING
+        }
     }
 
     let config = {
@@ -21,15 +24,16 @@ module.exports = (sequelize, DataTypes) => {
 
     let Actor = sequelize.define(alias, cols, config);
 
-    Actor.associate = (models) => {
+    //Definir asociaciones
+
+    Actor.associate = function (models) {
         Actor.belongsToMany(models.Pelicula, {
             as: "peliculas",
-            though: "actor_movie",
-            foreingKey: "actor_id"
+            through: "actor_movie",
+            foreignKey: "actor_id",
             otherKey: "movie_id",
             timestamps: false
         });
     }
-
     return Actor;
-} 
+}
