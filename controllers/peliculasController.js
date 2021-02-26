@@ -56,12 +56,21 @@ let peliculasController = {
                 length: req.body.duracion,
                 rating: req.body.rating
             }, {
-                where:{
+                where: {
                     id:req.params.id
                 }
             });
 
             res.redirect('/peliculas/' + req.params.id)
+        },
+        borrar: function(req, res) {
+            db.Pelicula.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+
+            res.redirect('/peliculas');
         }
 
     }
