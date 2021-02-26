@@ -32,4 +32,7 @@
         <a href="/peliculas/editar/<%= pelicula.id %> ">
         <button>Editar</button>
         </a>
+        <form action="/peliculas/borrar/<%= pelicula.id %>" method="POST">
+            <button type="submit">Borrar</button>
+        </form>
 <%- include('footer') -%> 
